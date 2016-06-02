@@ -16,11 +16,15 @@ The powershell profile defines some aliases to launch the right version of opens
 
 * openstudio.rb: 
 
-    require 'C:\Program Files\OpenStudio 1.11.3\Ruby\openstudio.rb'
+```
+require 'C:\Program Files\OpenStudio 1.11.3\Ruby\openstudio.rb'
+```
 
 * openstudio.rc: 
 
-    require 'D:\OpenStudio\build\OSCore-prefix\src\OSCore-build\ruby\Debug\openstudio.rb'
+```
+require 'D:\OpenStudio\build\OSCore-prefix\src\OSCore-build\ruby\Debug\openstudio.rb'
+```
 
 In the PowerShell Profile I defined three aliases and corresponding actions:
 
