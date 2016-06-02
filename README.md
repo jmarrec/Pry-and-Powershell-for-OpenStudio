@@ -125,10 +125,15 @@ Note: if you want to modify that, see `resources\modify_class_string_to_add_colo
 
 # Installing everything automatically
 
-You'll find a copy_object.bat file which will copy the three main files in the right location. Just double click on it.
+You'll find a `copy_to_loc.bat` file which will copy the three main files in the right location. Just double click on it.
 
 You can always just do it manually...
 
 
 ----
 
+### Contact and Contribution
+
+**Happy modeling and don't hesitate to reach out to me for any bugs or comments.**
+
+I'll also welcome pull requests.
