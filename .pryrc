@@ -1,3 +1,6 @@
+require 'openstudio'
+
+=begin
 print "Do you want OpenStudio (os) or OpenStudio Release Candidate (rc): [os/osrc] "
 input = gets.strip
 
@@ -6,6 +9,7 @@ if input == "os"
 else
     require 'openstudio-rc'
 end
+=end
 
 #require 'csv'
 #require 'json'
