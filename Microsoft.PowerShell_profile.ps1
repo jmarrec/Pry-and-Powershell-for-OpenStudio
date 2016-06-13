@@ -1,5 +1,5 @@
-# Start in d: director = Set to your own needs
-set-location d:
+# Start in C: director = Set to your own needs
+set-location c:
 
 # Bind $Shell to $Host.UI.RawUI (hard to remember)
 $Shell = $Host.UI.RawUI
@@ -13,7 +13,7 @@ Function Set-Title-OS {
   $Shell.BackgroundColor = “White”;
   $Shell.ForegroundColor = “Black”;
   Clear-Host;
-  $Shell.WindowTitle=”OpenStudio 1.11.3”;
+  $Shell.WindowTitle=”OpenStudio 1.11.4”;
   pry -r 'openstudio'
  }
 New-Alias os Set-Title-OS
@@ -23,7 +23,7 @@ Function Set-Title-OSDEBUG {
   $Shell.BackgroundColor = “White”;
   $Shell.ForegroundColor = “Black”;
   Clear-Host;
-  $Shell.WindowTitle=”DEBUG - OpenStudio 1.11.3 - DEBUG”;
+  $Shell.WindowTitle=”DEBUG - OpenStudio 1.11.4 - DEBUG”;
   pry
 }
     New-Alias osdebug Set-Title-OSDEBUG

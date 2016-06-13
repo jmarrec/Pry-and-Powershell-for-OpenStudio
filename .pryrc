@@ -1,15 +1,15 @@
-require 'openstudio'
+#require 'openstudio'
 
-=begin
-print "Do you want OpenStudio (os) or OpenStudio Release Candidate (rc): [os/osrc] "
+#=begin
+print "Do you want OpenStudio (os) or OpenStudio Release Candidate (rc): [os/rc] "
 input = gets.strip
 
-if input == "os"
-    require 'openstudio'
-else
+if input == "rc"
     require 'openstudio-rc'
+else
+    require 'openstudio'
 end
-=end
+#=end
 
 #require 'csv'
 #require 'json'
@@ -18,7 +18,7 @@ end
 require 'D:\Software\Others\openstudio-standards\openstudio-standards\lib\openstudio-standards.rb'
 
 # Load my class to emulate runner.registerError("error message") etc with puts "error message".error
-require 'D:\Software\Pry and Powershell for OpenStudio\resources\modify_class_string_to_add_colors.rb'
+require 'C:\Users\Julien\Documents\Software\Pry-and-Powershell-for-OpenStudio\resources\modify_class_string_to_add_colors.rb'
 
 Pry.config.theme = "jmarrec-16" 
 

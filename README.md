@@ -1,6 +1,6 @@
 # Pry-theme
 
-You need pry, and pry-theme (`gem install pry-theme`, you might need to install the DevKit before)
+You need pry, and pry-theme (`gem install pry`, `gem install pry-theme`, you might need to install the DevKit before)
 
 Then you'll need to paste the theme at `%userprofile%\.pry\themes\jmarrec-16.prytheme.rb`
 
@@ -10,7 +10,17 @@ The pry-theme I created just defines color that goes with a white terminal.
 
 # PowerShell Profile
 
-This file is located at `%userprofile%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1` (if it doesn't exist, which is likely the case, you'll just create it when pasting the file)
+This file is located at `%userprofile%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`.
+if it doesn't exist, which is likely the case, you'll need to create it.
+
+Open PowerShell and enter `Test-Path $Profile` to see if you have already got a profile.
+If you don't have one, to create one enter:
+
+    New-Item –Path $Profile –Type File –Force
+    
+Typing `$Profile` will give you the full path.
+
+Enable scripts: `Set-ExecutionPolicy Unrestricted -Scope CurrentUser`
 
 The powershell profile defines some aliases to launch the right version of openstudio that you need: you can have several files in your `C:\Ruby200-x64\lib\ruby\site_ruby`. For example I have two: openstudio.rb which points to OpenStudio 1.1.13 currently and openstudio-rc which points to my local build of OpenStudio (when compiling the source code).
 
