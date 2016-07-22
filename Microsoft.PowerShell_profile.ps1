@@ -1,4 +1,4 @@
-# Start in C: director = Set to your own needs
+# Start in C: directory = Set to your own needs
 set-location c:
 
 # Bind $Shell to $Host.UI.RawUI (hard to remember)
@@ -13,17 +13,21 @@ Function Set-Title-OS {
   $Shell.BackgroundColor = “White”;
   $Shell.ForegroundColor = “Black”;
   Clear-Host;
-  $Shell.WindowTitle=”OpenStudio 1.11.4”;
+  $Shell.WindowTitle=”OpenStudio 1.12.1”;
   pry -r 'openstudio'
  }
 New-Alias os Set-Title-OS
-    
+
+
+##############################################
+# These two below aren't necesarilly needed
+
 # Current release of OpenStudio - for debug purpose, helps identifying when you open two terminals at the same time on the same model
 Function Set-Title-OSDEBUG {
   $Shell.BackgroundColor = “White”;
   $Shell.ForegroundColor = “Black”;
   Clear-Host;
-  $Shell.WindowTitle=”DEBUG - OpenStudio 1.11.4 - DEBUG”;
+  $Shell.WindowTitle=”DEBUG - OpenStudio - DEBUG”;
   pry
 }
     New-Alias osdebug Set-Title-OSDEBUG

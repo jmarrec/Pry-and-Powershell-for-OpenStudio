@@ -1,23 +1,31 @@
-#require 'openstudio'
+# Either you always require openstudio, or if you use several build and develop, you can comment out the
+# line just below and uncomment the =begin =end to ask the user to specify which to import
 
-#=begin
-print "Do you want OpenStudio (os) or OpenStudio Release Candidate (rc): [os/rc] "
+require 'openstudio'
+
+=begin
+print "Do you want OpenStudio (os) or OpenStudio Release Candidate (osrc) or Local build (rcbis): [os/osrc/rcbis] "
 input = gets.strip
 
-if input == "rc"
+# This typically loads a custom build installed on my computer
+if input == 'osrc'
     require 'openstudio-rc'
-else
-    require 'openstudio'
+    
+# This typically loads the current development version built in debug mode
+elsif input == 'rcbis'
+    require 'openstudio-rcbis'
 end
-#=end
+=end
 
-#require 'csv'
+# I typically use CSV a lot, so I generally import it all the time
+require 'csv'
 #require 'json'
 
 # Load my local repo of openstudio-standards - CHANGE IT TO MATCH YOUR INSTALL
 require 'D:\Software\Others\openstudio-standards\openstudio-standards\lib\openstudio-standards.rb'
 
 # Load my class to emulate runner.registerError("error message") etc with puts "error message".error
+# You need to change the path to it.
 require 'C:\Users\Julien\Documents\Software\Pry-and-Powershell-for-OpenStudio\resources\modify_class_string_to_add_colors.rb'
 
 Pry.config.theme = "jmarrec-16" 
