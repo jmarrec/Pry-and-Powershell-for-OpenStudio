@@ -22,21 +22,27 @@ Typing `$Profile` will give you the full path.
 
 Enable scripts: `Set-ExecutionPolicy Unrestricted -Scope CurrentUser`
 
-The powershell profile defines some aliases to launch the right version of openstudio that you need: you can have several files in your `C:\Ruby200-x64\lib\ruby\site_ruby`. For example I have two: openstudio.rb which points to OpenStudio 1.1.13 currently and openstudio-rc which points to my local build of OpenStudio (when compiling the source code).
+The powershell profile defines some aliases to launch the right version of openstudio that you need: you can have several files in your `C:\Ruby200-x64\lib\ruby\site_ruby`. For example I have three: openstudio.rb which points to OpenStudio 1.12.1 currently, openstudio-rc which points to a friendly build that I installed, and openstudio-rcbis which points to my local build of OpenStudio (when compiling the source code).
 
 * openstudio.rb: 
 
 ```
-require 'C:\Program Files\OpenStudio 1.11.3\Ruby\openstudio.rb'
+require 'C:\Program Files\OpenStudio 1.12.1\Ruby\openstudio.rb'
 ```
 
-* openstudio.rc: 
+* openstudio-rc.rb: 
+
+```
+require 'C:\Program Files\OpenStudio 1.12.2\Ruby\openstudio.rb'
+```
+
+* openstudio-rcbis.rb: 
 
 ```
 require 'D:\OpenStudio\build\OSCore-prefix\src\OSCore-build\ruby\Debug\openstudio.rb'
 ```
 
-In the PowerShell Profile I defined three aliases and corresponding actions:
+In the PowerShell Profile I defined three aliases and corresponding actions. Only the first one is really needed.
 
 * `os`: launches pry and requires openstudio.rb, sets the terminal to white background and black font and sets the title of the terminal window to "OpenStudio 1.1.13"
 * `osdebug`: same as above except it sets the title "DEBUG - OpenStudio 1.11.3 - DEBUG". I find that usefull sometimes when I have two terminal windows open, one in which I actually modify the model interactively, and the other that's simply my test bed to find methods, etc.
