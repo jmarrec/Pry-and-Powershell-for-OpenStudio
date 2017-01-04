@@ -18,6 +18,8 @@ If you don't have one, to create one enter:
 
     New-Item –Path $Profile –Type File –Force
     
+(You might need to use `New-Item -Path $profile -ItemType "file" -Force` instead).
+    
 Typing `$Profile` will give you the full path.
 
 Enable scripts: `Set-ExecutionPolicy Unrestricted -Scope CurrentUser`
