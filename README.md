@@ -135,7 +135,7 @@ Note: if you want to modify that, see `resources\modify_class_string_to_add_colo
 ![Test string class](/doc/colortable_function.png)
 
 
-# Cast a ModelObject to what it actually is
+## Cast a ModelObject to what it actually is
 
     [4] (main)> x = model.getModelObjects[10]
     x.class
