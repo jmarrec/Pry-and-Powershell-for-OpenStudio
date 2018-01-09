@@ -1,10 +1,17 @@
 # Pry-theme
 
-You need pry, and pry-theme (`gem install pry`, `gem install pry-theme`, you might need to install the DevKit before)
+You need pry, and pry-theme, as well as 'os' (you might need to install the ruby DevKit before).
+
+```
+gem install pry
+gem install pry-theme
+gem install os
+```
 
 Then you'll need to paste the theme at `%userprofile%\.pry\themes\jmarrec-16.prytheme.rb`
 
-The pry-theme I created just defines color that goes with a white terminal. 
+The pry-theme I created just defines color that goes with a white terminal. It is only useful on Windows (and will be loaded via the `.pryrc` file only if you are on Windows).
+The Windows terminal doesn't support 256 bits colors and has terrible defaults. On Unix (macOS or Linux), the default is just fine as is.
 
 ![Pry Theme Colors](/doc/pry-theme-colors.png)
 
@@ -24,30 +31,26 @@ Typing `$Profile` will give you the full path.
 
 Enable scripts: `Set-ExecutionPolicy Unrestricted -Scope CurrentUser`
 
-The powershell profile defines some aliases to launch the right version of openstudio that you need: you can have several files in your `C:\Ruby200-x64\lib\ruby\site_ruby`. For example I have three: openstudio.rb which points to OpenStudio 1.12.1 currently, openstudio-rc which points to a friendly build that I installed, and openstudio-rcbis which points to my local build of OpenStudio (when compiling the source code).
+The only thing the powershell profile does is to change the appearance of the powershell window (white bg with black font) + its title via aliases (when I have several powershell open, I like to have a different title)
+There is also an example at the end with an alias to launch another file in  `C:\Ruby22-x64\lib\ruby\site_ruby`. For example I have two: openstudio.rb which points to OpenStudio 2.4.0 currently, openstudio-rc which points to a friendly build that I installed.
 
 * openstudio.rb: 
 
 ```
-require 'C:\Program Files\OpenStudio 1.12.1\Ruby\openstudio.rb'
+require 'C:\ppenstudio-2.4.0\Ruby\openstudio.rb'
 ```
 
 * openstudio-rc.rb: 
 
 ```
-require 'C:\Program Files\OpenStudio 1.12.2\Ruby\openstudio.rb'
+require 'C:\openstudio-2.4.0\Ruby\openstudio.rb'
 ```
 
-* openstudio-rcbis.rb: 
-
-```
-require 'D:\OpenStudio\build\OSCore-prefix\src\OSCore-build\ruby\Debug\openstudio.rb'
-```
 
 In the PowerShell Profile I defined three aliases and corresponding actions. Only the first one is really needed.
 
-* `os`: launches pry and requires openstudio.rb, sets the terminal to white background and black font and sets the title of the terminal window to "OpenStudio 1.1.13"
-* `osdebug`: same as above except it sets the title "DEBUG - OpenStudio 1.11.3 - DEBUG". I find that usefull sometimes when I have two terminal windows open, one in which I actually modify the model interactively, and the other that's simply my test bed to find methods, etc.
+* `os`: launches pry, sets the terminal to white background and black font and sets the title of the terminal window to "OpenStudio"
+* `osdebug`: same as above except it sets the title "DEBUG - OpenStudio - DEBUG". I find that useful sometimes when I have two terminal windows open, one in which I actually modify the model interactively, and the other that's simply my test bed to find methods, etc.
 * `osrc`: launches pry and requires  `openstudio-rc.rb`, sets the background to black and text to white and title to ”OpenStudio Release Candidate”
 
 That means I can then launch Powershell, cd to the directory of my choosing and type "os" to start my session. When pry gets called, the `.pryrc file is triggered `
@@ -60,7 +63,10 @@ The `.pryrc file` loads the pry-theme I created and makes the prompt show you th
 
 But more importantly it allows you to automatically require some modules, to add some functions or classes that you use often.
 
+This is some commented out code at the beginning that will ask you a question about which version you want to load.
+
 Note: I have hardcoded the path to my local repository of `openstudio-standards`. I find that very useful because I'm always messing with openstudio-standards in order to get it to do what I want.
+You'll need to read and execute the steps in [DevelopperInformation > Setup](https://github.com/NREL/openstudio-standards/blob/master/docs/DeveloperInformation.md) if you want that too.
 I also hardcoded the path `resources\modify_class_string_to_add_colors.rb` (in this directory). I suggest you adjust that!
 
 ![Change path in pryrc](/doc/change_path_in pryrc.png)
@@ -147,7 +153,7 @@ Note: if you want to modify that, see `resources\modify_class_string_to_add_colo
 
 # Installing everything automatically
 
-You'll find a `copy_to_loc.bat` file which will copy the three main files in the right location. Just double click on it.
+You'll find a `copy_to_loc.bat` - **WINDOWS ONLY** - file which will copy the three main files in the right location. Just double click on it.
 
 You can always just do it manually...
 
