@@ -31,19 +31,21 @@ Typing `$Profile` will give you the full path.
 
 Enable scripts: `Set-ExecutionPolicy Unrestricted -Scope CurrentUser`
 
+**Note:** if you keep getting a security warning when you launch powershell, go to `%userprofile%\Documents\WindowsPowerShell\` in Windows Explorer, right click on `Microsoft.PowerShell_profile.ps1`, "Properties" > "Unlock"
+
 The only thing the powershell profile does is to change the appearance of the powershell window (white bg with black font) + its title via aliases (when I have several powershell open, I like to have a different title)
 There is also an example at the end with an alias to launch another file in  `C:\Ruby22-x64\lib\ruby\site_ruby`. For example I have two: openstudio.rb which points to OpenStudio 2.4.0 currently, openstudio-rc which points to a friendly build that I installed.
 
 * openstudio.rb: 
 
 ```
-require 'C:\ppenstudio-2.4.0\Ruby\openstudio.rb'
+require 'C:\openstudio-2.4.0\Ruby\openstudio.rb'
 ```
 
 * openstudio-rc.rb: 
 
 ```
-require 'C:\openstudio-2.4.0\Ruby\openstudio.rb'
+require 'C:\openstudio-2.4.1\Ruby\openstudio.rb'
 ```
 
 
