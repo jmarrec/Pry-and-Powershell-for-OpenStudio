@@ -64,8 +64,7 @@ require 'csv'
 #require 'json'
 
 # Load my local repo of openstudio-standards - CHANGE IT TO MATCH YOUR INSTALL
-#require 'D:\Software\Others\openstudio-standards\openstudio-standards\lib\openstudio-standards.rb'
-
+=begin
 p = File.join(ENV['HOME'], 'Software/Others/openstudio-standards/lib/openstudio-standards.rb')
 if File.exists?(p)
   require p
@@ -74,7 +73,7 @@ if File.exists?(p)
 else
   puts "Cannot find local openstudio-standards"
 end
-
+=end
 
 # Load my class to emulate runner.registerError("error message") etc with puts "error message".error
 # You need to change the path to it.
@@ -89,6 +88,10 @@ end
 Pry.config.prompt_name = File.basename(Dir.pwd)
 
 # Helper to load a model in one line
+# It will raise if the path (or the model) isn't valid
+#
+# @param path [String] The path to the osm
+# @return [OpenStudio::Model::Model] the resulting model.
 def osload(path)
   translator = OpenStudio::OSVersion::VersionTranslator.new
   ospath = OpenStudio::Path.new(path)
@@ -102,8 +105,10 @@ def osload(path)
 end
 
 # Extend ModelObject class to add a to_actual_object method
-# Casts a ModelObject into what it actually is (OS:Node for example...)
 class OpenStudio::Model::ModelObject
+  # Casts a ModelObject into what it actually is (OS:Node for example...)
+  #
+  # @return [OpenStudio::Model::T] the actual Model Object of class T (eg: OpenStudio::Model::Node)
   def to_actual_object
     obj_type = self.iddObjectType.valueName
     obj_type_name = obj_type.gsub('OS_','').gsub('_','')
@@ -134,7 +139,7 @@ class OpenStudio::Model::ModelObject
           return actual_thing.get
       end
     else
-    puts "Object doesn't respond to '#{method_name}'"
+      puts "Object doesn't respond to '#{method_name}'"
     end
     return false
   end
@@ -196,3 +201,55 @@ ft = OpenStudio::EnergyPlus::ForwardTranslator.new
 # I include this in order to be able to write code that looks closer to C++ when building tests
 # I can do `m = Model.new` instead of `OpenStudio::Model::Model.new`
 include OpenStudio::Model
+
+# Helper to create a dummy surface to play with.
+# This is because I never remember how to do it...
+def make_dummy_surface(model, w=1.0)
+  pts = OpenStudio::Point3dVector.new;
+
+  pts << OpenStudio::Point3d.new(0, 0, 0)
+  pts << OpenStudio::Point3d.new(0, w, 0)
+  pts << OpenStudio::Point3d.new(w, w, 0)
+  pts << OpenStudio::Point3d.new(w, 0, 0)
+
+  return OpenStudio::Model::Surface.new(pts, model)
+end
+
+# Helper to load the SDK Documentation for a class in a browser
+# Make sure to run `gem install oga` if you do not have it yet
+#
+# @param object [OS object] an actual object, such as an instance of `OpenStudio::Model::Surface`
+# @return None, opens the browser
+def show_os_doc(object)
+
+  require 'oga'
+  require 'open-uri'
+
+  classname = object.class.to_s
+  s = classname.split('::')
+  if s.size != 3
+    puts "Unexpected number of namespaces"
+    return false
+  end
+
+  namespace = s[1].downcase
+  object_class = s[2]
+
+  uri = "http://openstudio-sdk-documentation.s3.amazonaws.com/cpp/OpenStudio-#{OpenStudio::openStudioVersion}-doc/#{namespace}/html/classes.html"
+  document = Oga.parse_html(open(uri));
+  begin
+    d = document.xpath('//td/a[text() = "' + "#{object_class}" + '"]/@href')[0].value
+    uri = "https://openstudio-sdk-documentation.s3.amazonaws.com/cpp/OpenStudio-#{OpenStudio::openStudioVersion}-doc/#{namespace}/html/#{d}"
+  rescue
+    puts "Cannot locate specific URI for #{classname}, defaulting to index"
+  end
+
+  if OS.linux?
+    system("xdg-open", uri)
+  elsif OS.mac?
+    system("open", uri)
+  else
+    system("start", uri)
+  end
+
+end
